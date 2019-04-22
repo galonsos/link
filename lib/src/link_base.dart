@@ -14,7 +14,7 @@ class Link extends StatelessWidget {
 
   void _launch(String url) async {
     if (await Launcher.canLaunch(url)) {
-      await Launcher.launch(url);
+      await Launcher.launch(url, forceWebView: true,);
     } else {
       if (onError != null) {
         onError();
