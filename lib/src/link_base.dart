@@ -6,18 +6,18 @@ class Link extends StatelessWidget {
   
   final Widget child;
   final String url;
-  final VoidCallback onError;
+  final VoidCallback? onError;
 
   /// In case the URL is not openable (i.e., scheme is not supported in your device), it won't launch the URL and call the onError callback if provided.
   /// Otherwise, the URL will be launched within the app
-  const Link({Key key, @required this.url, @required this.child, this.onError: null}) : super(key: key);
+  const Link({Key? key, required this.url, required this.child, this.onError}) : super(key: key);
 
   void _launch(String url) async {
     if (await Launcher.canLaunch(url)) {
       await Launcher.launch(url, forceWebView: true,);
     } else {
       if (onError != null) {
-        onError();
+        onError!();
       }
     }
   }
